@@ -1,0 +1,33 @@
+version: '3'
+services:
+    app:
+        build: .
+        ports:
+            - 8000:80
+        env_file:
+            - .env
+        depends_on:
+            - db
+        networks:
+            - ng-nw
+    db:
+        image: mysql:8.3
+        environment: # Uses env vars from Laravel
+            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_TCP_PORT=${DB_PORT}
+            - MYSQL_ALLOW_EMPTY_PASSWORD=true
+        volumes:
+            - database2:/var/lib/mysql
+        networks:
+            - proxy-network
+
+volumes:
+    database2:
+
+networks:
+    proxy-network:
+        name: uwu-weeb-network
+        external: true
