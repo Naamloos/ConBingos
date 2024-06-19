@@ -56,7 +56,7 @@ export default function Card({card})
                 <div className="grid grid-cols-5 gap-4">
                     {card.bingo_items.map((item) =>
                         {
-                            let checked = (cardState && cardState[item.id]) ? 'bg-green-700' : 'bg-gray-700';
+                            let checked = (cardState && cardState[item.id]) ? 'dark:bg-green-700 bg-green-400' : 'dark:bg-gray-700';
                             return (
                                 <div key={item.id} className={"lg:h-24 lg:w-24 h-16 w-16 overflow-hidden shadow rounded-lg hover:opacity-50 cursor-pointer " + checked}
                                     onClick={() => toggleItem(item.id)}>
