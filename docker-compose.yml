@@ -9,7 +9,7 @@ services:
         depends_on:
             - db
         networks:
-            - ng-nw
+            - proxy-network
     db:
         image: mysql:8.3
         environment: # Uses env vars from Laravel
