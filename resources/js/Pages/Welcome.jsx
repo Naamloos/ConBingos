@@ -27,7 +27,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion, cards }) {
                                             <div className="flex-1 truncate">
                                                 <div className="flex items-center space-x-3">
                                                     <img
-                                                        className="h-8 w-8 rounded-full"
+                                                        className="h-8 w-8"
                                                         src={card.logo_b64}
                                                         alt=""
                                                         onError={handleImageError}
