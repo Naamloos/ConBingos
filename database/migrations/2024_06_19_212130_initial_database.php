@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->longText('logo_b64')->nullable();
 
-            $table->foreignId('user_id')->constrained(); // Creator ID
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Creator ID
         });
 
         Schema::create('bingo_items', function (Blueprint $table) {
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->longText('icon_b64')->nullable();
 
-            $table->foreignId('card_id')->constrained();
+            $table->foreignId('card_id')->constrained()->onDelete('cascade');
         });
     }
 

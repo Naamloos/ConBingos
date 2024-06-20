@@ -29,6 +29,13 @@ class PageController extends Controller
         ]);
     }
 
+    public function deleteCard($id)
+    {
+        $card = Card::findOrFail($id);
+        $card->delete();
+        return redirect()->route('dashboard');
+    }
+
     public function create()
     {
         return Inertia::render('Create');
