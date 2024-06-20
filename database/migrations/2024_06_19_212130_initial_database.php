@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('description')->nullable();
-            $table->string('logo_b64', 4096 * 4)->nullable();
+            $table->longText('logo_b64')->nullable();
 
             $table->foreignId('user_id')->constrained(); // Creator ID
         });
@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->string('title')->nullable();
             $table->string('description')->nullable();
-            $table->string('icon_b64', 8192 * 10)->nullable();
+            $table->longText('icon_b64')->nullable();
 
             $table->foreignId('card_id')->constrained();
         });
