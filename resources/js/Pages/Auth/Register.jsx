@@ -12,6 +12,7 @@ export default function Register() {
         email: '',
         password: '',
         password_confirmation: '',
+        invite: ''
     });
 
     useEffect(() => {
@@ -22,6 +23,8 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
+
+        console.log(data);
 
         post(route('register'));
     };
@@ -63,6 +66,23 @@ export default function Register() {
                     />
 
                     <InputError message={errors.email} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel htmlFor="invite" value="Invite Code" />
+
+                    <TextInput
+                        id="invite"
+                        type="text"
+                        name="invite"
+                        value={data.invite}
+                        className="mt-1 block w-full"
+                        autoComplete="username"
+                        onChange={(e) => setData('invite', e.target.value)}
+                        required
+                    />
+
+                    <InputError message={errors.invite} className="mt-2" />
                 </div>
 
                 <div className="mt-4">

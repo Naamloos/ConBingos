@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Invite;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -34,7 +35,12 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'invite' => ['required', 'string', 'exists:invites,key']
+        ], [
+            'invite.exists' => 'You need a valid invite code to register as an admin.'
         ]);
+
+        Invite::where('key', $request->invite)->delete();
 
         $user = User::create([
             'name' => $request->name,

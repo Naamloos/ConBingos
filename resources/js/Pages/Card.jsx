@@ -37,7 +37,7 @@ export default function Card({card})
                             <div className="flex items-center space-x-3">
                                 {/* icon_b64, centered */}
                                 <img
-                                    className="h-8 w-8 rounded-full"
+                                    className="h-16 w-16"
                                     src={card.logo_b64}
                                     alt=""
                                 />
@@ -65,7 +65,7 @@ export default function Card({card})
                                             {/* if item has an icon, display it. else, display the name */}
                                             {item.icon_b64 ? (
                                                 <img
-                                                    className="self-center inline-block h-full"
+                                                    className="self-center inline-block h-full p-3"
                                                     src={item.icon_b64}
                                                     alt=""
                                                 />

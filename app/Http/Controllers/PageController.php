@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BingoItem;
 use App\Models\Card;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -26,5 +27,50 @@ class PageController extends Controller
         return Inertia::render('Card', [
             'card' => Card::findOrFail($id)->load('bingoItems')
         ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('Create');
+    }
+
+    public function postCreate(Request $request)
+    {
+        $card = new Card();
+        $card->name = $request->input('name');
+        $card->description = $request->input('description');
+        $card->logo_b64 = $request->input('icon');
+        $card->user_id = $request->user()->id;
+        $card->save();
+        $card->refresh();
+
+        for($i = 0; $i < 12; $i++)
+        {
+            $item = new BingoItem();
+            $item->title = '';
+            $item->description = '';
+            $item->icon_b64 = $request->input('images')[$i];
+            $item->card_id = $card->id;
+            $item->save();
+        }
+
+        $free = new BingoItem();
+        $free->title = 'Free';
+        $free->description = 'Free Spot!';
+        $free->icon_b64 = '';
+        $free->card_id = $card->id;
+        $free->save();
+
+        for($i = 12; $i < 24; $i++)
+        {
+            $item = new BingoItem();
+            $item->title = '';
+            $item->description = '';
+            $item->icon_b64 = $request->input('images')[$i];
+            $item->card_id = $card->id;
+            $item->save();
+        }
+
+        return redirect()->route('card', ['id' => $card->id]);
     }
 }

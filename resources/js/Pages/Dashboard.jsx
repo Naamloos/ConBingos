@@ -1,7 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({ auth, cards }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -11,8 +11,28 @@ export default function Dashboard({ auth }) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900 dark:text-gray-100">You're logged in!</div>
+                    {/* list cards */}
+                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                        {cards.map((card) => (
+                            <Link key={card.id + '-link'} href={route('card', {id: card.id})}>
+                                <div key={card.id} className="bg-gray-50 dark:bg-gray-700 overflow-hidden shadow rounded-lg">
+                                    <div className="px-4 py-5 sm:p-6 hover:opacity-50 cursor-pointer hover:cursor-pointer">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex-1 truncate">
+                                                <div className="flex items-center space-x-3">
+                                                    <img
+                                                        className="h-8 w-8 rounded-full"
+                                                        src={card.logo_b64}
+                                                        alt=""
+                                                    />
+                                                    <div className="text-sm font-medium text-gray-900 dark:text-gray-200">{card.name}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>

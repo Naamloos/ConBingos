@@ -23,7 +23,7 @@ return new class extends Migration
         Schema::create('bingo_items', function (Blueprint $table) {
             $table->id();
 
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('icon_b64', 8192 * 10)->nullable();
 
