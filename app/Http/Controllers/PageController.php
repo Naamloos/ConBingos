@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BingoItem;
 use App\Models\Card;
+use App\Models\Invite;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
@@ -39,6 +40,23 @@ class PageController extends Controller
     public function create()
     {
         return Inertia::render('Create');
+    }
+
+    public function getNewInvite()
+    {
+        $inv = new Invite();
+        $inv->key = bin2hex(random_bytes(16));
+        $inv->save();
+        return response(['code' => $inv->key]);
+    }
+
+    public function toggleHide($id)
+    {
+        $card = Card::findOrFail($id);
+        $card->hidden = !$card->hidden;
+        $card->save();
+        $card->refresh();
+        return redirect()->route('dashboard');
     }
 
     public function postCreate(Request $request)

@@ -13,6 +13,8 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/create', 'create')->middleware(['auth', 'verified'])->name('create');
     Route::post('/create', 'postCreate')->middleware(['auth', 'verified'])->name('postCreate');
     Route::delete('/card/{id}', 'deleteCard')->middleware(['auth', 'verified'])->name('deleteCard');
+    Route::get('/invite', 'getNewInvite')->middleware(['auth', 'verified'])->name('invite');
+    Route::put('/hide/{id}', 'toggleHide')->middleware(['auth', 'verified'])->name('hide');
     Route::get('/img/{id}', 'showIcon')->name('img');
 });
 
