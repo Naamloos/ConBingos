@@ -63,7 +63,7 @@ export default function Card({card})
                                 <div key={item.id} className={"lg:h-24 lg:w-24 h-16 w-16 overflow-hidden shadow items-center content-center justify-center rounded-lg cursor-pointer " + checked}
                                     onClick={() => toggleItem(item.id)}>
                                         <div className="flex-1 truncate text-center items-center" title={item.description}>
-                                            <div className="flex items-center justify-center p-3 max-h-16 max-w-16 lg:max-h-24 lg:max-w-24">
+                                            <div className="flex items-center justify-center p-3 max-h-16 max-w-16 lg:max-h-24 lg:max-w-24 text-wrap text-xs">
                                                 {/* if item has an icon, display it. else, display the name */}
                                                 {item.icon_b64 ? (
                                                     <img

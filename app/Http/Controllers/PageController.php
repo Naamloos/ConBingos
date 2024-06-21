@@ -43,6 +43,11 @@ class PageController extends Controller
 
     public function postCreate(Request $request)
     {
+        if(count($request->get('items')) !== 24)
+        {
+            abort(400, 'Invalid request');
+        }
+
         $card = new Card();
         $card->name = $request->input('name');
         $card->description = $request->input('description');
@@ -51,12 +56,14 @@ class PageController extends Controller
         $card->save();
         $card->refresh();
 
+        $items = $request->input('items');
+
         for($i = 0; $i < 12; $i++)
         {
             $item = new BingoItem();
-            $item->title = '';
-            $item->description = '';
-            $item->icon_b64 = $request->input('images')[$i];
+            $item->title = $items[$i]['title'];
+            $item->description = $items[$i]['description'];
+            $item->icon_b64 = $items[$i]['icon'];
             $item->card_id = $card->id;
             $item->save();
         }
@@ -71,9 +78,9 @@ class PageController extends Controller
         for($i = 12; $i < 24; $i++)
         {
             $item = new BingoItem();
-            $item->title = '';
-            $item->description = '';
-            $item->icon_b64 = $request->input('images')[$i];
+            $item->title = $items[$i]['title'];
+            $item->description = $items[$i]['description'];
+            $item->icon_b64 = $items[$i]['icon'];
             $item->card_id = $card->id;
             $item->save();
         }
