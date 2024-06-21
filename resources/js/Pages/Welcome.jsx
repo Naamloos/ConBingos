@@ -19,7 +19,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion, cards }) {
                     <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">Pick your shitty meme bingo down below 🗣️🗑️ </p>
 
                     <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                        {cards.map((card) => (
+                        {cards.filter(x => !x.hidden).map((card) => (
                             <Link key={card.id + '-link'} href={route('card', {id: card.id})}>
                                 <div key={card.id} className="bg-gray-50 dark:bg-gray-700 overflow-hidden shadow rounded-lg">
                                     <div className="px-4 py-5 sm:p-6 cursor-pointer">

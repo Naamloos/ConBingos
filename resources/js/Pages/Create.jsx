@@ -5,7 +5,7 @@ import { useState } from 'react';
 export default function Create({ auth }) {
     const [items, setItems] = useState([]);
 
-    const [form, setForm] = useState({name: '', description: '', icon: ''});
+    const [form, setForm] = useState({name: '', description: '', icon: '', hidden: 0});
 
     function processIcon(files)
     {
@@ -79,8 +79,11 @@ export default function Create({ auth }) {
             name: form.name,
             description: form.description,
             items: items,
-            icon: form.icon
+            icon: form.icon,
+            hidden: form.hidden == 'on' ? true : false
         };
+
+        console.log(data);
 
         router.post(route('postCreate'), data);
     }
@@ -130,6 +133,16 @@ export default function Create({ auth }) {
                                         value={form.description}
                                         required
                                     />
+                                </div>
+
+                                <div className="mt-5">
+                                    <input type="checkbox" name="hidden" id="hidden" className="mr-2 inline-block shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                                        onChange={(e) => setForm({ ...form, hidden: e.target.value})}
+                                        checked={form.hidden}
+                                    />
+                                    <label htmlFor="hidden" className="text-sm font-medium text-gray-700 dark:text-gray-200"
+                                        onChange={(e) => setForm({ ...form, hidden: e.target.value })}
+                                    >Make this Bingo Card hidden?</label>
                                 </div>
 
                                 <div className="mt-5">

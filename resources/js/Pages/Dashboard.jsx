@@ -34,7 +34,7 @@ export default function Dashboard({ auth, cards }) {
                                         <div className="flex items-center justify-between">
                                             <div className="flex-1 truncate">
                                                 <div className="flex items-center space-x-3 hover:opacity-50 cursor-pointer">
-                                                    <Link key={card.id + '-link'} href={route('card', {id: card.id})}>
+                                                    <Link key={card.id + '-link'} href={`/card/${card.id}`}>
                                                         <img
                                                             className="h-8 w-8 rounded-full"
                                                             src={card.logo_b64}

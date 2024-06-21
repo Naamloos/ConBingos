@@ -53,6 +53,7 @@ class PageController extends Controller
         $card->description = $request->input('description');
         $card->logo_b64 = $request->input('icon');
         $card->user_id = $request->user()->id;
+        $card->hidden = $request->input('hidden');
         $card->save();
         $card->refresh();
 
