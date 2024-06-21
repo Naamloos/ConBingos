@@ -43,9 +43,10 @@ export default function Card({card})
                                     alt=""
                                 />
                                 {/* name */}
-                                <div className="text-sm font-medium text-gray-900 dark:text-gray-200">{card.name}</div>
-                                {/* description */}
-                                <div className="text-xs text-gray-500 dark:text-gray-400">{card.description}</div>
+                                <div>
+                                    <div className="text-sm font-medium text-gray-900 dark:text-gray-200">{card.name}</div>
+                                    <div className="text-sm text-gray-500 dark:text-gray-400">{card.description}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
