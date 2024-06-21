@@ -13,6 +13,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/create', 'create')->middleware(['auth', 'verified'])->name('create');
     Route::post('/create', 'postCreate')->middleware(['auth', 'verified'])->name('postCreate');
     Route::delete('/card/{id}', 'deleteCard')->middleware(['auth', 'verified'])->name('deleteCard');
+    Route::get('/img/{id}', 'showIcon')->name('img');
 });
 
 Route::get('/dashboard', function () {

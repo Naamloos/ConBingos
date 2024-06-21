@@ -80,4 +80,13 @@ class PageController extends Controller
 
         return redirect()->route('card', ['id' => $card->id]);
     }
+
+    public function showIcon($cardId)
+    {
+        $card = Card::findOrFail($cardId);
+        // data:image/png;
+        $contentType = substr(explode(';', $card->logo_b64)[0], 5);
+        $content = explode(',', $card->logo_b64)[1];
+        return response(base64_decode($content))->header('Content-Type', $contentType);
+    }
 }
