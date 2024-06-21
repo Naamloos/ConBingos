@@ -39,6 +39,7 @@ export default function Card({card})
                                 <img
                                     className="h-16 w-16"
                                     src={card.logo_b64}
+                                    style={{ flexGrow: `calc(100%/100%)` }}
                                     alt=""
                                 />
                                 {/* name */}
@@ -58,24 +59,27 @@ export default function Card({card})
                         {
                             let checked = (cardState && cardState[item.id]) ? 'dark:bg-green-700 bg-green-400' : 'dark:bg-gray-700';
                             return (
-                                <div key={item.id} className={"lg:h-24 lg:w-24 h-16 w-16 overflow-hidden shadow rounded-lg hover:opacity-50 cursor-pointer " + checked}
+                                <div key={item.id} className={"lg:h-24 lg:w-24 h-16 w-16 overflow-hidden shadow items-center content-center justify-center rounded-lg hover:opacity-50 cursor-pointer " + checked}
                                     onClick={() => toggleItem(item.id)}>
-                                    <div className="flex items-center justify-center lg:h-24 lg:w-24 h-16 w-16">
-                                        <div className="flex-1 truncate text-center" title={item.description}>
-                                            {/* if item has an icon, display it. else, display the name */}
-                                            {item.icon_b64 ? (
-                                                <img
-                                                    className="self-center inline-block h-full p-3"
-                                                    src={item.icon_b64}
-                                                    alt=""
-                                                />
-                                            ) : (
-                                                <>
-                                                {/* vertically centered text */}
-                                                <div className="text-sm font-medium text-gray-900 dark:text-gray-200">{item.title}</div>
-                                                </>
-                                            )}
-                                        </div>
+                                        <div className="flex-1 truncate text-center items-center" title={item.description}>
+                                            <div className="flex items-center justify-center p-3 max-h-16 max-w-16 lg:max-h-24 lg:max-w-24">
+                                                {/* if item has an icon, display it. else, display the name */}
+                                                {item.icon_b64 ? (
+                                                    <img
+                                                        // vertically center
+                                                        className="lg:p-2 p-0.5"
+                                                        src={item.icon_b64}
+                                                        alt=""
+                                                    />
+                                                ) : (
+                                                    <>
+                                                        {/* vertically and horizontally centered title in flex */}
+
+                                                            {item.title}
+
+                                                    </>
+                                                )}
+                                            </div>
                                     </div>
                                 </div>
                             );
