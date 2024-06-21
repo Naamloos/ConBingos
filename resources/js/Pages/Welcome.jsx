@@ -22,7 +22,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion, cards }) {
                         {cards.map((card) => (
                             <Link key={card.id + '-link'} href={route('card', {id: card.id})}>
                                 <div key={card.id} className="bg-gray-50 dark:bg-gray-700 overflow-hidden shadow rounded-lg">
-                                    <div className="px-4 py-5 sm:p-6 hover:opacity-50 cursor-pointer hover:cursor-pointer">
+                                    <div className="px-4 py-5 sm:p-6 cursor-pointer">
                                         <div className="flex items-center justify-between">
                                             <div className="flex-1 truncate">
                                                 <div className="flex items-center space-x-3">
