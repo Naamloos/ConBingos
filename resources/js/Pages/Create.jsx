@@ -33,8 +33,9 @@ export default function Create({ auth }) {
         reader.readAsDataURL(files[0]);
     }
 
-    function submit()
+    function submit(e)
     {
+        e.preventDefault();
         // submit form to backend /create with POST
         console.log(form);
         console.log(images);
@@ -63,12 +64,13 @@ export default function Create({ auth }) {
                             <h3 className="text-lg font-medium leading-6 text-gray-900 dark:text-gray-200">Create a new bingo card</h3>
                             <p className="mt-1 max-w-2xl text-sm text-gray-500 dark:text-gray-400">Upload 24 images, and give your bingo card a name and description.</p>
                             {/* disable form for js */}
-                            <form>
+                            <form onSubmit={(e) => submit(e)} >
                                 <div className="mt-5">
                                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Name</label>
                                     <input type="text" name="name" id="name" className="mt-1 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
                                         onChange={(e) => setForm({...form, name: e.target.value})}
                                         value={form.name}
+                                        required
                                     />
                                 </div>
                                 <div className="mt-5">
@@ -76,7 +78,11 @@ export default function Create({ auth }) {
                                         onChange={(e) => setForm({...form, description: e.target.value})}
                                         value={form.description}
                                         >Description</label>
-                                    <input type="text" name="description" id="description" className="mt-1 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md" />
+                                    <textarea type="text" name="description" id="description" className="mt-1 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                                        onChange={(e) => setForm({...form, description: e.target.value})}
+                                        value={form.description}
+                                        required
+                                    />
                                 </div>
                                 <div className="mt-5">
                                     <label htmlFor="icon" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Icon</label>
@@ -94,7 +100,7 @@ export default function Create({ auth }) {
                                     Images selected: {images.length} / 24
                                 </div>
                                 <div className="mt-5">
-                                    <button disabled={images.length !== 24} type="button" onClick={() => submit()} className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300">
+                                    <button disabled={images.length !== 24} type="submit" className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300">
                                         {images.length === 24 ? 'Create' : 'Please select 24 images.'}
                                     </button>
                                 </div>
