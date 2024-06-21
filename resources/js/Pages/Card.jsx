@@ -44,8 +44,8 @@ export default function Card({card})
                                 />
                                 {/* name */}
                                 <div>
-                                    <div className="text-sm font-medium text-gray-900 dark:text-gray-200">{card.name}</div>
-                                    <div className="text-sm text-gray-500 dark:text-gray-400">{card.description}</div>
+                                    <div className="text-sm font-medium text-gray-900 dark:text-gray-200 text-wrap">{card.name}</div>
+                                    <div className="text-sm text-gray-500 dark:text-gray-400 text-wrap">{card.description}</div>
                                 </div>
                             </div>
                         </div>

@@ -33,7 +33,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion, cards }) {
                                                         onError={handleImageError}
                                                     />
                                                     {/* name on newline centered and small */}
-                                                    <div className="text-sm font-medium text-gray-900 dark:text-gray-200">{card.name}</div>
+                                                    <div className="text-xs font-medium text-gray-900 dark:text-gray-200 text-wrap">{card.name}</div>
                                                 </div>
                                             </div>
                                         </div>
